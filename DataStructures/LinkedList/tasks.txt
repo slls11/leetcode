@@ -1,0 +1,14 @@
+* LinkedList
+    * Initialize
+    * Insert
+    * Delete
+    * Traverse
+    * Reverse
+    * Double Linked List
+
+
+* Types 
+    * Single
+    * Double 
+    * Circular
+

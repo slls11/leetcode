@@ -22,3 +22,22 @@ public:
     return true;
     }
 };
+
+
+/* solution using vectors instead of unorderd_map */
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        vector<int> map1 (128,-1), map2(128,-1);
+        for (int i = 0; i < s.length(); i++){
+            int s_value = int(s[i]), t_value = int(t[i]);
+            
+            if (map1[s_value] == -1) map1[s_value] = t_value;
+            else if (map1[s_value] != t_value) return false;
+            
+            if (map2[t_value] == -1) map2[t_value] = s_value;
+            else if (map2[t_value] != s_value) return false;
+        }
+    return true;
+    }
+};

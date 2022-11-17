@@ -24,7 +24,7 @@ public:
 };
 
 
-/* solution using vectors instead of unorderd_map */
+/* solution using vectors instead of unordered_map */
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {

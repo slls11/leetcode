@@ -1,5 +1,27 @@
 class Solution {
-/* this solution only works if it does not time out on the autograder, so really it does not work... */
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string,vector<string>> map;
+        for (auto iter : strs){
+            string str = iter;
+            sort(str.begin(), str.end());
+            map[str].push_back(iter);
+        }
+        vector<vector<string>> ans;
+        for (auto iter : map){
+            vector<string> group;
+            for (int i = 0; i < iter.second.size(); i++) 
+                group.push_back(iter.second[i]);
+            ans.push_back(group);
+        }
+    return ans;
+    }
+};
+
+
+class Solution {
+/* don't use this, vector shenanigans
+   this solution only works if it does not time out on the autograder, so really it does not work... */
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
         vector<vector<string>> ans;

@@ -1,4 +1,20 @@
 class Solution {
+    /* cleaner solution */
+public:
+    bool isAnagram(string s, string t) {
+        vector<int> vec_s(27,0), vec_t(27,0);
+        for (auto iter : s) vec_s[iter-'a']++;
+        for (auto iter : t) vec_t[iter-'a']++;
+
+        if (vec_s == vec_t) return true;
+    return false;
+    }
+};
+
+
+
+
+class Solution {
 public:
     bool isAnagram(string s, string t) {
         unordered_map <char,int> map1;

@@ -1,4 +1,27 @@
 class Solution {
+    /* cleaner solution */
+public:
+    bool isPalindrome(string s) {
+        string str;
+        for (auto& iter : s){
+            if (int(iter) >= 65 && int(iter) <= 90 || int(iter) >= 97 && int(iter) <= 122 || int(iter) >= 48 && int(iter) <= 57)
+            str += iter;
+        }
+        for (auto& iter : str){
+            if (int(iter) >= 65 && int(iter) <= 90) iter = iter + 32;
+        }
+
+        int left = 0, right = str.size()-1;
+        while (left < right){
+            if (str[left] != str[right]) return false;
+            left++; right--;
+        }
+    return true;
+    }
+};
+
+
+class Solution {
 public:
     bool isPalindrome(string s) {
         cout << s << endl;

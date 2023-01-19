@@ -1,3 +1,31 @@
+
+class MinStack {
+public:
+    void push(int val) {
+        stk.push(val);
+        if (stk_min.empty() || val < stk_min.top().first)
+            stk_min.push({val,1});
+        else if (val == stk_min.top().first)
+            stk_min.top().second++;
+    }
+    
+    void pop() {
+        if (stk.top() == stk_min.top().first){
+            stk_min.top().second--;
+            if (!stk_min.top().second) stk_min.pop();
+        }
+        stk.pop();
+    }
+    
+    int top() {return stk.top();}
+    int getMin() {return stk_min.top().first;}
+
+    stack<int> stk;
+    stack<pair<int,int>> stk_min;
+};
+
+
+/* old solution */
 class Node{
     public:
         Node(){}

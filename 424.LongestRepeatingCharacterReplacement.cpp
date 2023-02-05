@@ -23,3 +23,35 @@ public:
     return max_length;
     }
 };
+
+
+
+
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        vector<int> count(26,0);
+        int left = 0, right = -1;
+        int length = 0, max_length = 0;
+        while (right < int(s.length())){
+
+            if ((length - *max_element(count.begin(), count.end())) <= k){
+                if (max_length <= length) max_length = length;
+
+                right++;
+                if (right < int(s.length())){
+                    count[s[right] - 'A']++;
+                    length++;
+                }
+
+            }
+            else{
+                count[s[left] - 'A']--;
+                length--;
+                left++;
+            }
+        }
+        
+    return max_length;
+    }
+};

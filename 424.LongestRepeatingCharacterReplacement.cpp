@@ -1,4 +1,3 @@
-/* brute force, O(n^2) */
 class Solution {
 public:
     int max_value(map<char,int>& count){

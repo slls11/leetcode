@@ -1,5 +1,32 @@
+
 class Solution {
-/* Runtime: O(2n) -> O(n) */ 
+    /* Single pass, Runtime: O(n) */
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* middle = head;
+        ListNode* front = head;        
+
+        for (int i = 0; i < n; i++) front = front->next;
+        
+        if (front == nullptr) {
+            middle = middle->next;
+            return middle;
+        }
+        
+        while (front->next != nullptr){
+            front = front->next;
+            middle = middle->next;
+        } 
+        middle->next = middle->next->next;
+
+    return head;
+    }
+};
+
+
+
+class Solution {
+/* Double pass, Runtime: O(2n) -> O(n) */ 
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
         ListNode* right = head;

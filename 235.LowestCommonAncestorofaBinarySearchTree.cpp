@@ -1,5 +1,26 @@
 class Solution {
-    // messy but working solution
+public:
+    TreeNode* ans = nullptr;
+    void search(TreeNode* root, int min, int max){
+        if (root == nullptr) return;
+        else if (root->val >= min && root->val <= max){
+            ans = root;
+            return;
+        }
+        search(root->left, min, max);
+        search(root->right, min, max);
+    }
+
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        search(root, min(p->val, q->val), max(p->val, q->val));
+    return ans;
+    }
+};
+
+
+
+class Solution {
+    // messy but working solution, did not know it was a real binary search tree, i.e (left values less, right values greater)
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         vector<TreeNode*> lca;

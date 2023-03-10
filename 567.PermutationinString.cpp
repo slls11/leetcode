@@ -36,7 +36,6 @@ public:
 
         int left = 0, right = 0, total = 0;
         while (right < s2.length()){
-            cout << left << " " << right << endl;
             if (count[s2[right] - 'a'] > 0){
                 count[s2[right] - 'a']--;
                 right++;

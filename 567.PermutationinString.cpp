@@ -25,3 +25,37 @@ public:
     return false;
     }
 };
+
+
+
+class Solution {
+public:
+    bool checkInclusion(string s1, string s2) {
+        vector<int> count(27,0);
+        for (auto& iter : s1) count[iter - 'a']++;
+
+        int left = 0, right = 0, total = 0;
+        while (right < s2.length()){
+            cout << left << " " << right << endl;
+            if (count[s2[right] - 'a'] > 0){
+                count[s2[right] - 'a']--;
+                right++;
+                total++;
+            }
+            else{
+                if (left < right){
+                    count[s2[left] - 'a']++;
+                    left++;
+                    total--;
+                }
+                else{
+                    left++;
+                    right++;
+                    total = 0;
+                }
+            }
+            if (total == s1.length()) return true;
+        }
+    return false;
+    }
+};

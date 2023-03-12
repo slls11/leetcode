@@ -1,4 +1,32 @@
 class Solution {
+    /* Optimal Runtime */
+public:
+    vector<vector<int>> ans;
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<int> curr;
+        int run_total = 0, start = 0;
+        search(candidates, target, curr, run_total, start);
+    return ans;
+    }
+
+    void search(vector<int>& candidates, int target, vector<int>& curr, int run_total, int start){
+        if (run_total == target){
+            ans.push_back(curr);
+            return;
+        }
+        else if (run_total > target) return;
+
+        for (int i = start; i < candidates.size(); i++){
+            curr.push_back(candidates[i]);
+            search(candidates, target, curr, run_total + candidates[i], i);
+            curr.pop_back();
+        }
+    }
+};
+
+
+
+class Solution {
 public:
     vector<vector<int>> ans;
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {

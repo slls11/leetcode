@@ -1,28 +1,26 @@
 class Solution {
 public:
     Node* cloneGraph(Node* node) {
-        if (node == nullptr){
-            return nullptr;
-        }
-        queue<Node*> q;
+        if (node == nullptr) return nullptr;
+
         unordered_map<Node*,Node*> map;
+        queue<Node*> q;
 
-        Node* start = new Node(node->val);
-        map[node] = start;
-
+        map[node] = new Node(node->val);
         q.push(node);
+
         while (!q.empty()){
             Node* curr = q.front();
             q.pop();
-            
-            for (int i = 0; i < curr->neighbors.size(); i++){
-                if (map.find(curr->neighbors[i]) == map.end()){
-                    map[curr->neighbors[i]] = new Node(curr->neighbors[i]->val);
-                    q.push(curr->neighbors[i]);
+
+            for (auto& iter : curr->neighbors){
+                if (map.find(iter) == map.end()){
+                    map[iter] = new Node(iter->val);
+                    q.push(iter);
                 }
-                map[curr]->neighbors.push_back(map[curr->neighbors[i]]);
+                map[iter]->neighbors.push_back(map[curr]);
             }
         }
-    return start;
+    return map[node];
     }
 };

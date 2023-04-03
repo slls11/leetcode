@@ -2,6 +2,32 @@ class Solution {
 /* Runtime: O(nlog(n)) */
 public:
     int carFleet(int target, vector<int>& position, vector<int>& speed) {
+        priority_queue<pair<double,double>> pq;
+        for (int i = 0; i < position.size(); i++) pq.push({position[i],speed[i]});
+        
+        int fleets = 1;
+        pair<double,double> lead = pq.top();
+        while (!pq.empty()){
+            pq.pop();
+
+            float lead_time = (target - lead.first)/lead.second;
+            float second_time = (target - pq.top().first)/pq.top().second;
+
+            if (lead_time < second_time) {
+                lead = pq.top();
+                fleets++;
+            }        
+        }
+
+    return fleets;
+    }
+};
+
+
+class Solution {
+/* Runtime: O(nlog(n)) */
+public:
+    int carFleet(int target, vector<int>& position, vector<int>& speed) {
         vector<pair<int,double>> sorted_position;
         for(int i = 0; i < position.size(); i++){
             double time_to_finish = (double) (target - position[i]) / speed[i];

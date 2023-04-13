@@ -1,4 +1,5 @@
 class Solution {
+    /* Runtime: O(E + V) */
 public:
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
         unordered_map<int,vector<int>> map;

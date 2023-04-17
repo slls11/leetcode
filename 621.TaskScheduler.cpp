@@ -1,5 +1,5 @@
 class Solution {
-    /* O(26 * log(26)) */
+    /* O(26 * log(26)) -> O(n * cooldown) */
 public:
     int leastInterval(vector<char>& tasks, int n) {
         priority_queue<int> pq;

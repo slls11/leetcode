@@ -1,41 +1,28 @@
 class Solution {
+    /* O(26 * log(26)) */
 public:
     int leastInterval(vector<char>& tasks, int n) {
-        map<char,int> map;
-        for (auto& iter : tasks){
-            map[iter]++;
-        }
+        priority_queue<int> pq;
+        queue<vector<int>> q;
+        vector<int> count(26,0);
 
-        priority_queue<pair<int,char>> pq;
-        for (auto& iter : map){
-            pair<int,char> task = make_pair(iter.second, iter.first);
-            pq.push(task);
-        }
+        for (auto& it : tasks) count[it - 'A']++;
+        for (auto& it : count)
+            if (it > 0) pq.push(it);
 
         int time = 0;
-        char prev;
-        while (!map.empty()){
-            int length = n;
-            for (auto& iter : map){
-                cout << "prev: " << prev << endl;
-                if (iter.first == prev){
-                    cout << "-----IDEL" << endl;
-                    time += length;
-                    continue;
-                }
-
-                iter.second--;
-                prev = iter.first;
-                if (iter.second == 0) map.erase(iter.first);
-
-                length--;
-                time++;
-                if (length == 0) break; 
+        while (!pq.empty() || !q.empty()){
+            time++;
+            if (!pq.empty()){
+                if (pq.top() > 1) q.push({pq.top()-1, time + n});
+                pq.pop();
             }
             
+            if (!q.empty() && q.front()[1] == time){
+                pq.push(q.front()[0]);
+                q.pop();
+            }
         }
-
-
     return time;
     }
 };

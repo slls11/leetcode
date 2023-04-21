@@ -1,3 +1,48 @@
+class Twitter {
+public:
+    void postTweet(int userId, int tweetId) {
+       _all_tweets.push_back(make_pair(userId, tweetId));
+    }
+    
+    vector<int> getNewsFeed(int userId) {
+        vector<int> feed;
+        int feed_elements = 0;
+        
+        for (int i = _all_tweets.size()-1; i > -1; i--){
+            int user = _all_tweets[i].first;
+            int tweet = _all_tweets[i].second;
+
+            if (_followingIds[userId].find(user) != _followingIds[userId].end() || user == userId){
+                if (feed_elements > 9) break;
+                feed.push_back(tweet);
+                feed_elements++;
+            }
+        }
+    return feed;
+    }
+    
+    void follow(int followerId, int followeeId) {
+        _followingIds[followerId].insert(followeeId);   
+    }
+    
+    void unfollow(int followerId, int followeeId) {
+        _followingIds[followerId].erase(followeeId); 
+    }
+private:
+    vector<pair<int,int>> _all_tweets;
+    unordered_map<int, unordered_set<int>> _followingIds;
+};
+
+
+
+
+
+
+
+
+
+
+
 class UserData{
 public:
     UserData(int userId){ _userId = userId;}

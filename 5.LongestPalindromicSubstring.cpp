@@ -1,4 +1,26 @@
 class Solution {
+  /* Runtime: O(n^2), Space: O(1), cleaner */
+public:
+    string longestPalindrome(string s) {
+        string str;
+        for (int i = 0; i < s.size(); i++){
+            expand(s, i, i, str);
+            expand(s, i, i+1, str);
+        }
+    return str;
+    }
+
+    void expand(const string& s, int i, int j, string& str){
+        while (i > -1 && j < s.size() && s[i] == s[j]){
+            if (j-i+1 > str.size()) str = s.substr(i, j-i+1);
+            i--;
+            j++;
+        }
+    }
+};
+
+
+class Solution {
   /* Runtime: O(n^2), Space: O(1) */
 public:
     string longestPalindrome(string s) {

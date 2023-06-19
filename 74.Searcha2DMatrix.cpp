@@ -1,5 +1,30 @@
 class Solution {
 public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        for (auto& it : matrix){
+            if (target > it.back()) continue;
+            return binary_search(it, target);
+        }
+    return false;
+    }
+
+    bool binary_search(vector<int>& vec, int target){
+        int low = 0, high = vec.size()-1, mid = high/2;
+        while (low <= high){
+            if (vec[mid] == target) return true;
+            else if (vec[mid] < target) low = mid + 1;
+            else high = mid - 1;
+            mid = (high+low)/2;
+        }
+    return false;
+    }
+};
+
+
+
+
+class Solution {
+public:
     bool binary_search(vector<int>& nums, int target){
         int low = 0, high = nums.size()-1;
         int mid = high/2;
